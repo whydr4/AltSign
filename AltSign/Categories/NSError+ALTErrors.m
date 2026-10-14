@@ -15,6 +15,7 @@ NSErrorDomain const ALTUnderlyingAppleAPIErrorDomain = @"Apple.APIError";
 NSErrorUserInfoKey const ALTSourceFileErrorKey = @"ALTSourceFile";
 NSErrorUserInfoKey const ALTSourceLineErrorKey = @"ALTSourceLine";
 NSErrorUserInfoKey const ALTAppNameErrorKey = @"appName";
+NSErrorUserInfoKey const ALTAnisetteResyncSIMErrorKey = @"ALTAnisetteResyncSIM";
 
 @implementation NSError (ALTError)
 
@@ -192,6 +193,9 @@ NSErrorUserInfoKey const ALTAppNameErrorKey = @"appName";
             
         case ALTAppleAPIErrorInvalidAnisetteData:
             return NSLocalizedString(@"The provided anisette data is invalid.", @"");
+            
+        case ALTAppleAPIErrorAnisetteResyncRequired:
+            return NSLocalizedString(@"The anisette data must be resynchronized with Apple.", @"");
     }
     
     return nil;

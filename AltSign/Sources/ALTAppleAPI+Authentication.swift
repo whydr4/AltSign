@@ -455,7 +455,16 @@ private extension ALTAppleAPI
                           let dictionary = responseDictionary["Response"] as? [String: Any],
                           let status = dictionary["Status"] as? [String: Any]
                     else { throw URLError(.badServerResponse) }
-                                        
+
+                    if status["hsc"] as? Int == 434
+                    {
+                        // GrandSlam wants the anisette data resynced before it accepts this request.
+                        let sim = (status["X-Apple-I-MD-DATA"] as? Data)?.base64EncodedString() ?? status["X-Apple-I-MD-DATA"] as? String
+                        var userInfo = [String: Any]()
+                        userInfo[ALTAnisetteResyncSIMErrorKey] = sim
+                        throw ALTAppleAPIError(.anisetteResyncRequired, userInfo: userInfo)
+                    }
+
                     let errorCode = status["ec"] as? Int ?? 0
                     guard errorCode != 0 else { return completionHandler(.success(dictionary)) }
                     

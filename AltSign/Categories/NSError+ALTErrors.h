@@ -16,6 +16,9 @@ extern NSErrorUserInfoKey const ALTSourceFileErrorKey;
 extern NSErrorUserInfoKey const ALTSourceLineErrorKey;
 extern NSErrorUserInfoKey const ALTAppNameErrorKey;
 
+// Base64-encoded X-Apple-I-MD-DATA returned by GrandSlam when it requests an anisette resync (hsc 434).
+extern NSErrorUserInfoKey const ALTAnisetteResyncSIMErrorKey;
+
 typedef NS_ERROR_ENUM(AltSignErrorDomain, ALTError)
 {
     ALTErrorUnknown,
@@ -58,6 +61,7 @@ typedef NS_ERROR_ENUM(ALTAppleAPIErrorDomain, ALTAppleAPIError)
     ALTAppleAPIErrorAuthenticationHandshakeFailed = 3020,
     
     ALTAppleAPIErrorInvalidAnisetteData = 3021,
+    ALTAppleAPIErrorAnisetteResyncRequired = 3022,
 };
 
 NS_ASSUME_NONNULL_BEGIN
